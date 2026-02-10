@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pokemon Project</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Minimal adjustments for the simplified layout */
+    body { padding: 20px; display:flex; align-items:flex-start; justify-content:center; }
+    main#app{ max-width:640px; width:100%; }
+    .hero { margin-bottom:18px; }
+    #title { font-size:34px; color:var(--accent); font-weight:800; }
+    .controls { display:flex; gap:10px; align-items:center; margin-bottom:14px; }
+    .controls input[type="search"]{ flex:1; min-height:48px; padding:10px 12px; border-radius:10px; border:1px solid #eee; background:var(--glass); font-size:15px; }
+    .controls .btn{ min-width:110px; height:48px; border-radius:10px; border:0; background:var(--accent); color:white; font-weight:700; padding:0 12px; box-shadow:var(--shadow); cursor:pointer; }
+    .game-card { display:flex; gap:12px; align-items:center; padding:10px; border-radius:12px; background:var(--card); box-shadow:var(--shadow); cursor:pointer; user-select:none; color:inherit; }
+    /* when NOT in dark mode, make the game card use the accent (yellow) and dark text for readability */
+    body:not(.dark-mode) .game-card {
+      background: var(--accent);
+      color: #0b0f12; /* dark text on yellow */
+    }
+    /* Keep a rounded frame but let the image determine its visible shape.
+       Use aspect-ratio so the cover adapts to the image proportions while
+       preserving the rounded border (overflow:hidden). */
+    .game-cover {
+      width: 72px;
+      aspect-ratio: 1 / 1; /* square cover frame */
+      height: auto;
+      background: linear-gradient(180deg,#f7f7f7,#eee);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #333;
+      overflow: hidden; /* ensures image is clipped to rounded frame */
+    }
+    .game-meta { display:flex; flex-direction:column; gap:6px; }
+    .game-title { font-weight:800; font-size:16px; color:var(--accent); }
+    .game-sub { font-size:13px; color:var(--muted); }
+  </style>
+</head>
+<body class="dark-mode">
+  <main id="app">
+    <header class="hero" style="align-items:center;">
+      <img id="title-logo" src="/LOGO-removebg-preview.png" alt="Pokémon Project logo" style="width:320px;height:auto;display:block;margin:0 auto 8px;" />
+    </header>
+
+    <section class="controls" aria-label="buscar juego">
+      <input id="search" type="search" placeholder="BUSCAR JUEGO" aria-label="buscar juego" />
+      <button id="searchBtn" class="btn" aria-label="buscar">BUSCAR 🔍</button>
+    </section>
+
+    <section id="launch" aria-live="polite">
+      <!-- Botón de juego: Rojo Fuego -->
+      <div id="gameBtn" class="game-card game-card--rom" role="button" tabindex="0" aria-pressed="false"
+           data-rom="/[Poke-Nexus] Pokemon - Edicion Rojo Fuego (Esp).gba"
+           data-title="Pokemon - Rojo Fuego (Esp)">
+        <div class="game-cover">
+          <img src="/POKEFUEGO.jpg" alt="Pokémon Rojo Fuego portada" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" />
+        </div>
+        <div class="game-meta">
+          <div class="game-title">Pokémon - Rojo Fuego (Esp)</div>
+          <div class="game-sub">Tap para abrir en emulador</div>
+        </div>
+      </div>
+
+      <!-- Botón de juego: Hoja Verde (copiado de Rojo Fuego con nueva ROM y portada) -->
+      <div id="gameBtn2" class="game-card game-card--rom" role="button" tabindex="0" aria-pressed="false"
+           data-rom="/[Poke-Nexus] Pokemon - Edicion Verde Hoja (Esp).gba"
+           data-title="Pokemon - Hoja Verde (Esp)">
+        <div class="game-cover">
+          <img src="/POKEHOJA.jpg" alt="Pokémon Hoja Verde portada" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" />
+        </div>
+        <div class="game-meta">
+          <div class="game-title">Pokémon - Hoja Verde (Esp)</div>
+          <div class="game-sub">Tap para abrir en emulador</div>
+        </div>
+      </div>
+
+      <!-- Botón de juego: Edición Esmeralda -->
+      <div id="gameBtn3" class="game-card game-card--rom" role="button" tabindex="0" aria-pressed="false"
+           data-rom="/[Poke-Nexus] Pokemon - Edicion Esmeralda (Esp).gba"
+           data-title="Pokemon - Edición Esmeralda (Esp)">
+        <div class="game-cover">
+          <img src="/800px-Caratula_Esmeralda.jpg" alt="Pokémon Edición Esmeralda portada" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" />
+        </div>
+        <div class="game-meta">
+          <div class="game-title">Pokémon - Edición Esmeralda (Esp)</div>
+          <div class="game-sub">Tap para abrir en emulador</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
